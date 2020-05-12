@@ -1,0 +1,18 @@
+package common;
+
+import board.model.vo.PageInfo;
+
+public class Pagination {
+	
+	public static PageInfo getPageInfo(int currentPage, int listCount) {
+		pageInfo pi = null;
+		
+		int pageLimit = 10;
+		int maxPage;
+		int startPage;
+		int endPage;
+		int boardLimit = 5;
+		
+		return pi;
+	}
+}

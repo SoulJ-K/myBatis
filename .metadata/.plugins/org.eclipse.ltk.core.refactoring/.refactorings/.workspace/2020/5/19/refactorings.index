@@ -1,0 +1,7 @@
+1588747896911	Delete resource '1_MyBatis/resources/config.xml'
+1588751224496	Delete resource '1_MyBatis/resources/mappers/member-mapper.xml'
+1588834239124	Delete 7 resources
+1588834247697	Delete resource '1_MyBatis/src/board/model/dao/MemberDAO.java'
+1588834252393	Delete resource '1_MyBatis/src/board/model/exception/MemberException.java'
+1588834255873	Delete resource '1_MyBatis/src/board/model/service/MemberService.java'
+1588834259198	Delete resource '1_MyBatis/src/board/model/vo/Member.java'

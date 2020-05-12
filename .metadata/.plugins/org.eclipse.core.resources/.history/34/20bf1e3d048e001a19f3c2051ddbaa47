@@ -1,0 +1,21 @@
+package common;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class Template {
+	public static SqlSession getSqlSession() {
+		SqlSession session = null;
+		
+		InputStream stream = Resources.getResourceAsStream("/mybatis-config.xml");
+		
+		SqlSessionFactoryBuilder ssfb = new SqlSessionFactoryBuilder();
+		SqlSessionFactory ssf = ssfb.build(stream);
+		
+		return session;
+	}
+}

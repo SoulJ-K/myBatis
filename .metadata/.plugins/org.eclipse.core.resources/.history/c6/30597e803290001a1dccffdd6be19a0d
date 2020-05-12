@@ -1,0 +1,22 @@
+package board.model.service;
+
+import org.apache.ibatis.session.SqlSession;
+
+import board.model.exception.BoardException;
+
+public class BoardDAO {
+
+	public int getListCount(SqlSession session) {
+		
+		int listCount = session.selectOne("boardMapper.selectListCount");
+		
+		if(listCount <= 0) {
+			session.close();
+			
+			throw new BoardException("게시물 조회 실패!");
+		}
+		
+		return listCount;
+	}
+	
+}

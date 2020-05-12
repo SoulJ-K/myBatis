@@ -1,0 +1,21 @@
+package member.model.service;
+
+import member.model.dao.MemberDAO;
+import member.model.vo.Member;
+import static common.Template.getSqlSession;
+
+import org.apache.ibatis.session.SqlSession;
+public class MemberService {
+
+	public Member selectMember(Member m) {
+		
+		SqlSession session = getSqlSession();
+		
+		Member member = new MemberDAO().selectMember(session, m);
+		
+		session.close();
+		
+		return member;
+	}
+	
+}

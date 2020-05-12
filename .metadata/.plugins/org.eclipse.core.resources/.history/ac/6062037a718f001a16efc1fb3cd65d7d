@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<!-- mapper를 사용한다는 것을 mybatis에게 알려줘야하므로 mybatis-config에 등록해야함 -->
+	<!-- 여러 mapper중 어떤 것을 불러와야하는지 이름을 설정해야함 -->
+	<select id="loginMember" parameterType="member.model.vo.Member">
+		<!-- 여러 쿼리문 중 어떤 쿼리문을 불러와야할지 이름을 지정해줌(id값) -->
+		<!-- dao에서 받아온 m이 어떤 형태인지 알지 못함. 받아온 값을 parameter로 명명함 그래서 parameterType을 설정해야함. 설정시 전체 위치를 적어줘야 어디에 있는건지 알 수 있음 -->
+		select * 
+		from member 
+		where user_id = #{userId} and user_pwd = #{userPwd}
+	</select>
+</mapper>

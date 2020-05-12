@@ -1,0 +1,21 @@
+package board.model.service;
+
+import org.apache.ibatis.session.SqlSession;
+
+import board.model.exception.BoardException;
+
+import static common.Template.getSqlSession;
+public class BoardService {
+
+	public int getListCount() throws BoardException {
+		
+		SqlSession session = getSqlSession();
+		
+		int listCount = new BoardDAO().getListCount(session);
+		
+		session.close();
+		
+		return listCount;
+	}
+	
+}

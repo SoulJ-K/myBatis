@@ -1,0 +1,47 @@
+package board.model.service;
+
+import org.apache.ibatis.session.SqlSession;
+
+import board.model.exception.BoardException;
+import board.model.vo.Board;
+import board.model.vo.PageInfo;
+
+import static common.Template.getSqlSession;
+
+import java.util.ArrayList;
+public class BoardService {
+
+	public int getListCount() throws BoardException {
+		
+		SqlSession session = getSqlSession();
+		
+		int listCount = new BoardDAO().getListCount(session);
+		
+		session.close();
+		
+		return listCount;
+	}
+
+	public ArrayList<Board> selectBoardList(PageInfo pi) throws BoardException {
+
+		SqlSession session = getSqlSession();
+		
+		ArrayList<Board> list = new BoardDAO().selectBoardList(session, pi);
+		
+		session.close();
+		
+		return list;
+	}
+
+	public Board selectBoardDetail(int bId) {
+		
+		SqlSession session = getSqlSession();
+		
+		Board b = new BoardDAO().selectBoardDetail(session, bId);
+		session.close();
+		
+		
+		return b;
+	}
+	
+}

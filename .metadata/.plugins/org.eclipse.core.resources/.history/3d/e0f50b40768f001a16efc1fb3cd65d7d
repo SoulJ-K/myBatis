@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 
+	configuration (properties?, settings?, typeAliases?, typeHandlers?,
+					objectFactory?, objectWrapperFactory?, reflectorFactory?, 
+					plugins?, environments?, databaseIdProvider?, mappers?)
+ -->
+ <configuration>
+ 	
+ 	<properties resource="/driver.properties"/>
+ 	
+ 	<!-- MyBatis와 관련된 기본 세팅 선언 -->
+ 	<settings>
+ 		<setting name="jdbcTypeForNull" value="NULL"/>
+ 		<!-- 데이터가 null로 전달되었다면 빈칸이 아닌 null로 인식하라는 태그(null은 대문자로 표기) -->
+ 	</settings>
+ 	
+ 	<!-- DB에 연결할 설정에 대한 정보 선언 -->
+ 	<!-- default : 연결 설정을 여러개 생성하여 아이디로 구분하고 기본으로 연결할 설정 정보를 설정(지정) -->
+ 	<environments default="development">
+ 		<environment id="development">
+ 			<!-- transactionManager : 트랜젝션을 누가 관리할 것인지 설정 -->
+ 			<transactionManager type="JDBC"/>
+ 			<!-- 
+ 				JDBC 	: 커밋과 롤백을 직접 처리하기 위해 사용(수동 commit) 
+ 				MANAGED : 트랜젝션에 대해 직접적인 영향을 행사하지 않음(자동 commit)
+ 						    커밋이나 롤백을 하지 않고 컨테이너가 트랜젝션의 모든 생명 주기 관리
+ 						   디폴트로 커넥션을 닫아줌
+ 			 -->
+ 			 
+ 			 <!-- 실제 DB접속에 대한 정보를 넣는 태그 -->
+ 			 <dataSource type="POOLED">
+		 	<!-- 
+		 		type : ConnectionPool을 사용 할건지에 대한 여부
+		 				UNPOOLED : DB요청 올때마다 실시간으로  커넥션 객체 open하고 close함.
+		 							미리 커넥션을 만들어놓지 않기 때문에 조금 느릴 수 있음
+		 							
+		 				POOLED	 : 커넥션 객체를 미리 만들어놓고 관리(요청이 올 때마다 커넥션을 꺼내 재사용)
+		 							객체를 만드는데 시간을 줄일 수 있음
+		 							Web Application(웹 서비스)의 방법
+		 				JNDI : EJB에서 사용
+		 	 -->
+ 			 	 <!-- <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+ 			 	 <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+ 			 	 <property name="username" value="MyBatis"/>
+ 			 	 <property name="password" value="MyBatis"/> -->
+ 			 	 <property name="driver" value="${driver}"/>
+ 			 	 <property name="url" value="${url}"/>
+ 			 	 <property name="username" value="${username}"/>
+ 			 	 <property name="password" value="${password}"/>
+ 			 </dataSource>
+ 		</environment>
+ 	</environments>	
+ 	
+ 	<!-- DB에 사용되는 쿼리문을 담은 mapper파일 등록 -->
+ 	<mappers>
+ 		<mapper resource="/mappers/member-mapper.xml"/>
+ 	</mappers>
+ 	
+ </configuration>
+ 

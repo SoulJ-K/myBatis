@@ -1,0 +1,45 @@
+package board.model.service;
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+import board.model.exception.BoardException;
+import board.model.vo.Board;
+import board.model.vo.PageInfo;
+
+public class BoardDAO {
+
+	public int getListCount(SqlSession session) throws BoardException {
+		
+		int listCount = session.selectOne("boardMapper.selectListCount");
+		
+		if(listCount <= 0) {
+			session.close();
+			
+			throw new BoardException("게시물 조회 실패!");
+		}
+		
+		return listCount;
+	}
+
+	public ArrayList<Board> selectBoardList(SqlSession session, PageInfo pi) throws BoardException {
+		
+		//rowBounds: 페이징 처리하는 클래스가 마이바티스에서 제공됨
+		//offset : 넘겨야할 게시글의 갯수(만약 2페이지를 볼거면 1페이지의 게시글은 안보여야함으로)
+		//limit : 한 페이지에서 보여질 게시글의 수
+				
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		ArrayList<Board> list = (ArrayList)session.selectList("boardMapper.selectBoardList", null, rowBounds);
+		
+		if(list == null) {
+			session.close();
+			throw new BoardException("게시물 조회 실패!!");
+		}
+		return list;
+	}
+	
+}

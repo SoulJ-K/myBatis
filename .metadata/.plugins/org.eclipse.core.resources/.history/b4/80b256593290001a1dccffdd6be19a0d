@@ -1,0 +1,5 @@
+package board.model.exception;
+
+public class BoardException extends Exception {
+
+}

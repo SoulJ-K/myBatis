@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<!-- mapper를 사용한다는 것을 mybatis에게 알려줘야하므로 mybatis-config에 등록해야함 -->
+	<!-- 여러 mapper중 어떤 것을 불러와야하는지 이름을 설정해야함 -->
+	
+	<!-- 1. select 구문 -->
+	<!-- 
+		<select id="loginMember" parameterType="member.model.vo.Member" resultType="member.model.vo.Member">
+		여러 쿼리문 중 어떤 쿼리문을 불러와야할지 이름을 지정해줌(id값)
+		dao에서 받아온 m이 어떤 형태인지 알지 못함. 받아온 값을 parameter로 명명함 그래서 parameterType을 설정해야함. 설정시 전체 위치를 적어줘야 어디에 있는건지 알 수 있음
+		반환될 값의 타입을 설정해줌. 설정시 전체 위치를 적어줘야 어디에 있는건지 알 수 있음
+		select * 
+		from member 
+		where user_id = #{userId} and user_pwd = #{userPwd}
+		</select> 
+	-->
+	<!-- 2. resultMap 적용 -->
+	<select id="loginMember" parameterType="member.model.vo.Member" resultMap="memberResultSet">
+		select * 
+		from member 
+		where user_id = #{userId} and user_pwd = #{userPwd}
+	</select>
+	
+	<resultMap type="Member" id="memberResultSet">
+		<id property="userId" column="USER_ID"/><!-- DB의 pk를 넣는 곳. property : Member 객체에 있는 이름    column : 테이블에 있는 컬럼 이름  -->
+		<result property="userPwd" column="USER_PWD"/><!-- 일반 컬럼 -->
+		<result property="userName" column="USER_NAME"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="gender" column="GENDER"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="mStatus" column="M_STATUS"/>
+	</resultMap>
+	
+	<insert id="insertMember" parameterType="Member" >
+		insert into member
+		values(#{userId}, #{userPwd}, #{userName}, #{nickName}, #{email}, #{birthDay}, #{gender}, #{phone},
+			   #{address}, SYSDATE, SYSDATE, default)
+	</insert>
+</mapper>

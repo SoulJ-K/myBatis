@@ -1,0 +1,16 @@
+package board.model.vo;
+
+public class PageInfo {
+	private int currentPage;
+	private int listCount;
+	private int pageLimit;
+	private int maxPage;
+	private int stratPage;
+	private int endPage;
+	private int boardLimit;
+	
+	public PageInfo() {}
+	
+	
+	
+}

@@ -1,0 +1,7 @@
+127.0.0.1 - - [04/May/2020:20:52:20 +0900] "GET / HTTP/1.1" 404 750
+0:0:0:0:0:0:0:1 - - [04/May/2020:20:52:24 +0900] "GET /1_MyBatis/index.jsp HTTP/1.1" 200 396
+0:0:0:0:0:0:0:1 - - [04/May/2020:20:52:24 +0900] "GET /1_MyBatis/resources/images/mybatis.png HTTP/1.1" 200 79864
+0:0:0:0:0:0:0:1 - - [04/May/2020:21:17:56 +0900] "GET /1_MyBatis/views/common/menubar.jsp HTTP/1.1" 200 1612
+0:0:0:0:0:0:0:1 - - [04/May/2020:21:17:56 +0900] "GET /js/jquery-3.4.1.min.js HTTP/1.1" 404 776
+0:0:0:0:0:0:0:1 - - [04/May/2020:21:17:56 +0900] "GET /favicon.ico HTTP/1.1" 404 761
+0:0:0:0:0:0:0:1 - - [04/May/2020:21:18:01 +0900] "POST /1_MyBatis/login.me HTTP/1.1" 404 772
